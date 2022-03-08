@@ -66,7 +66,7 @@ console.log('getFruitsHere', fruitsInstance.getFruitsHere());
 // "jueran here or there juan and juam" => jueran, juan, juam
 // "ju*ran here or there ju-an" =>
 
-const regexp = /\bju(an|am)?/g;
+const regexp = /ju\w*(an|am)/g;
 console.log('juan ads juam jueran'.match(regexp));
 
 // 5. Write a function that filters all the lemons (🍋) in the list below
@@ -149,21 +149,29 @@ const inventory = {
 // 10. Using the inventory object, write a function that filters all the items greater than 20
 // hint: entries, filter, spread operator
 function filterFruitsObject(obj) {
-  // obj.forEach((key, element) => {
-  //   console.log('key: ' + key + ' element ' + element);
-  // });
-  obj.map((key, element) => {
-    console.log('key: ' + key + ' element ' + element);
-  });
-
-  return undefined;
+  let result = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (obj[key] > 20) {
+        result[key] = obj[key];
+      }
+    }
+  }
+  return result;
 }
 
 const result10 = filterFruitsObject(inventory);
 console.log(result10);
 
 // 11. Using the inventory object, write a function that puts all the fruit icons in a list
-const result11 = 'your code here';
+function writeListFruits(obj) {
+  let result = [];
+  for (const key in obj) {
+    result.push(key);
+  }
+  return result;
+}
+const result11 = writeListFruits(inventory);
 console.log(result11);
 
 // 12. Using index.html, write a script that performs the following instructions:
